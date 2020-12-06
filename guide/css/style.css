@@ -1,0 +1,180 @@
+/*
+  If you get stuck, feel free to watch the follow-up videos where I'll show you one solution
+*/
+
+/* ================================= 
+  Base Element Styles
+==================================== */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Varela Round', sans-serif;
+	line-height: 1.6;
+	color: #3a3a3a;
+}
+
+p {
+	font-size: .95em;
+	margin-bottom: 1.8em;
+}
+
+h2,
+h3,
+a {
+	color: #093a58;
+}
+
+h2,
+h3 {
+	margin-top: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+/* ================================= 
+  Base Layout Styles
+==================================== */
+
+/* ---- Navigation ---- */
+
+.name {
+	font-size: 1.25em;
+  margin: 0;
+}
+
+.name a,
+.main-nav a {
+	text-align: center;
+}
+
+.main-nav a {
+	font-size: .95em;
+	color: #3acec2;
+	text-transform: uppercase;
+}
+
+.main-nav a:hover {
+	color: #093a58;
+}
+
+/* ---- Layout Containers ---- */
+
+.banner {
+	color: #fff;
+	background: #3acec2;
+  text-align:center;
+  padding: 2.1875em; /*35px*/
+  margin-bottom: 0.625em; /*10px*/
+}
+
+.main-footer {
+	background: #d9e4ea;
+	padding: 2em 0;
+	margin-top: 30px;
+  text-align: center;
+}
+
+/* ---- Page Elements ---- */
+
+.logo {
+	width: 190px;
+}
+
+.main-header {
+  text-align:center;
+  padding-top: .5em;
+  margin-bottom: .5em;
+}
+
+.headline {
+  margin-bottom: 0;
+}
+
+.content {
+  padding: .5em;
+}
+
+.col {
+  padding: 1em;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+@media (min-width: 769px) {
+
+.name,
+.col
+{
+  float: left;
+}
+
+.main-nav {
+  float: right;
+    
+}
+
+.main-nav li {
+  display:inline-block;
+  margin-left: 15px;
+}
+
+.tagline {
+  font-size: 1.4em;
+}
+
+.content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+.col {
+  float:left;
+}
+
+.secondary,
+.primary {
+  width: 50%;
+}
+	/* ---- Float clearfix ---- */
+
+	.clearfix::after {
+		content: " ";
+		display: table;
+		clear: both;
+	}
+
+}
+
+@media (min-width: 1150px) {
+
+
+.content {
+  width: 80%;
+  max-width: 1150px;
+}
+  
+.primary {
+  width: 40%;
+  padding: 1em;
+}
+
+.secondary,
+.tertiary
+{
+  width: 30%;
+  padding: 1em 2em;
+}
+
+}
