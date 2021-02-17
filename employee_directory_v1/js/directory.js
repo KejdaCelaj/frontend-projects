@@ -23,7 +23,7 @@ function displayEmployees(employeeData) {
     let email = employee.email;
     let city = employee.location.city;
     let picture = employee.picture;
-    // template literals make this so much cleaner!
+    // template literals make this so much cleaner
 
     employeeHTML += `
     <div class="card" data-index="${index}">
