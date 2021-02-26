@@ -1,0 +1,41 @@
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+div {
+	max-width: 440px;
+	position: absolute;
+	right: 20px;
+	top: 25%;
+}
+
+/* BLEND MODES */
+
+body {
+	font: 1em/1.4 'Helvetica Neue', sans-serif;
+	color: #eee;
+	background:  url('waterfall.jfif') no-repeat, radial-gradient(#6de590, #e67478);
+    background-blend-mode: multiply;
+	background-size: cover;
+}
+
+h1 {
+	font-size: 12em;
+	margin: 0;
+	line-height: 1;
+    letter-spacing: -2rem;
+    color: #6d845d;
+}
+
+span:nth-child(2){
+    color: #801b3a;
+}
+
+span:nth-child(3){
+    color: #164d67;
+}
+
+h1 span {
+    mix-blend-mode: screen;
+}
