@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+html,
+body,
+.wrap {
+ height: 100%;
+ margin: 0;
+}
+.wrap {
+ background: url('mountains.jfif') no-repeat;
+}
+
+h1 {
+ font-family: Helvetica, sans-serif;
+ color: #fff;
+ font-size: 22em;
+ margin: 0;
+ text-shadow: 2px 2px 5px rgba(0,0,0, .4);
+
+ /* Mask part of the text behind the mountain */
+ -webkit-mask-image: url('mask.png');
+ mask-image: url('mask.png');
+ padding: 260px 00 120px;
+
+ /* Add texture to the text */
+ /* -webkit-mask-image: url('texture.png');
+ mask-image: url('texture.png');
+ padding: 100px 00 120px; */
+}
