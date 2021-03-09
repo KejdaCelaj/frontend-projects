@@ -4,60 +4,9 @@ var expect = require('chai').expect;
 describe('checkForShip', function() {
     var checkForShip = require('../game_logic/ship_methods').checkForShip;
     //Test spec (unit test)
-        
-
-    it('should correctly report no ship located at the given coordinates', function() {
-        
-        //players are set as objects because they keep track of related information
-        player = {
-            //each player will have their set of ships as a property on the object
-            ships: [
-                //store each ship's loocation as a property
-                {
-                    locations: [[0, 0]]
-                }
-            ]
-        }
-
-        expect(checkForShip(player, [9,9])).to.be.false;
-    })
-
-    it('should correctly report a ship located at the given coordinates', function() {
-        
-        //players are set as objects because they keep track of related information
-        player = {
-            //each player will have their set of ships as a property on the object
-            ships: [
-                //store each ship's loocation as a property
-                {
-                    locations: [[0, 0]]
-                }
-            ]
-        }
-
-        expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]);
-    })
-
-    it('should handle ships located at more than one coordinate', function() {
-        
-        //players are set as objects because they keep track of related information
-        player = {
-            //each player will have their set of ships as a property on the object
-            ships: [
-                //store each ship's loocation as a property
-                {
-                    locations: [[0, 0], [0, 1]]
-                }
-            ]
-        }
-
-        expect(checkForShip(player, [0,1])).to.deep.equal(player.ships[0]);
-        expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]);
-        expect(checkForShip(player, [9,9])).to.be.false;
-    })
-
-    it('should handle checking multiple ships', function() {
-        
+    //Setting player object before using it in the cases
+    var player;
+    before(function(){
         //players are set as objects because they keep track of related information
         player = {
             //each player will have their set of ships as a property on the object
@@ -74,6 +23,26 @@ describe('checkForShip', function() {
                 }
             ]
         }
+    })
+
+    it('should correctly report no ship located at the given coordinates', function() {
+        
+        expect(checkForShip(player, [9,9])).to.be.false;
+    })
+
+    it('should correctly report a ship located at the given coordinates', function() {
+
+        expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]);
+    })
+
+    it('should handle ships located at more than one coordinate', function() {
+
+        expect(checkForShip(player, [0,1])).to.deep.equal(player.ships[0]);
+        expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]);
+        expect(checkForShip(player, [9,9])).to.be.false;
+    })
+
+    it('should handle checking multiple ships', function() {
 
         expect(checkForShip(player, [0,1])).to.deep.equal(player.ships[0]);
         expect(checkForShip(player, [0,0])).to.deep.equal(player.ships[0]);
@@ -106,9 +75,10 @@ describe('damageShip', function(){
 describe('fire', function(){
     var fire = require('../game_logic/ship_methods').fire;
 
-    //record damage on the correct ship when it is hit
-    it('should record damage on the given ship at the given coordinates', function(){
-        var player = {
+    //Setting player object before using it in the cases
+    var player;
+    beforeEach(function(){
+        player = {
             ships: [
                 {
                     locations: [[0,0]],
@@ -116,7 +86,11 @@ describe('fire', function(){
                 }
             ]
         };
+    })
 
+    //record damage on the correct ship when it is hit
+    it('should record damage on the given ship at the given coordinates', function(){
+        
         fire(player, [0,0]);
 
         //ship takes damage at the given location
@@ -125,14 +99,6 @@ describe('fire', function(){
 
     //record damage on the correct ship when it is hit
     it('should NOT record damage if there is no ship at the coordinates', function(){
-        var player = {
-            ships: [
-                {
-                    locations: [[0,0]],
-                    damage: []
-                }
-            ]
-        };
 
         fire(player, [9, 9]);
 

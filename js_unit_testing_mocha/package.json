@@ -90,7 +90,7 @@
     "yargs-unparser": "^2.0.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --report nyan"
   },
   "author": "",
   "license": "ISC",
