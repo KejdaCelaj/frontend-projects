@@ -1,78 +1,121 @@
-//add an array of objects for players
-const players = [
-    {
-        name: "Guil",
-        score: 50,
-        id: 1
-      },
-      {
-        name: "Treasure",
-        score: 85,
-        id: 2
-      },
-      {
-        name: "Ashley",
-        score: 95,
-        id: 3
-      },
-      {
-        name: "James",
-        score: 80,
-        id: 4
-      }
-]
+    //add the react component
+    //components are capitalized
+    const Header = (props) =>{
+        return  (
+            <header>
+                <h1>{ props.title }</h1>
+                <span className='stats'>Players: { props.totalPlayer}</span>
+            </header>
+        );
+    }
 
-//add the header react component
-//components are capitalized
-function Header(props){
-    return  (
-        <header>
-            <h1>Scoreboard</h1>
-            <span className='stats'>Players: { props.totalPlayer} </span>
-        </header>
-    );
-}
+    class Counter extends React.Component{
+        //add state for the score
+        constructor() {
+            super();
+            this.state = {
+                score:0
+            };
+        }
 
-function Counter(props){
-    return (
-        <div className='counter'>
-            <button className='counter-action decrement'>-</button>
-            <span className='counter-score'> {props.score} </span>
-            <button className='counter-action increment'>+</button>
-        </div>
+        //add increment/decrement functions
+        incrementItem = () => {
+            this.setState( prevState =>({ 
+                score: prevState.score + 1 
+            }));
+        }
+        decrementItem = () => {
+            this.setState( prevState => ({ 
+                score: prevState.score - 1 
+            }));
+        }
+
+        render(){
+            return (
+                <div className='counter'>
+                    <button onClick={this.decrementItem} className='counter-action decrement'>-</button>
+                    <span className='counter-score'> {this.state.score} </span>
+                    <button onClick={this.incrementItem} className='counter-action increment'>+</button>
+                </div>
+            )
+        }
+    }
+
+    const Player = (props) => {
+        return (
+            <div className='player'>
+                <span className='player-name'> 
+                    {props.name}
+                    {/* remove player button */}
+                    <button className="remove-player" onClick={ () => props.removePlayer(props.id)}>✖</button>
+                </span>
+                {/* composition */}
+                <Counter />
+            </div>
+        )
+    }
+
+    class App extends React.Component{
+
+        //add state for the players
+        constructor() {
+            super();
+            this.state = {
+            //add players array
+              players:[
+                {
+                    name: "Guil",
+                    id: 1
+                },
+                {
+                    name: "Treasure",
+                    id: 2
+                },
+                {
+                    name: "Ashley",
+                    id: 3
+                },
+                {
+                    name: "James",
+                    id: 4
+                }
+              ]
+            };
+          }
+
+        //add remove player function
+        handleRemovePlayer = (id) =>{
+            this.setState( prevState =>{
+                //do not rewrite the players array, instead add a new one
+                return {
+                    players: prevState.players.filter(p => p.id !== id)
+                }
+            })
+        }
+          
+        render(){
+            return (
+                <div className='scoreboard'>
+                    <Header title='Scoreboard' 
+                    totalPlayer={this.state.players.length}/>
+                    
+                    {/* player list */}
+                    {this.state.players.map(player =>
+                        <Player 
+                            name = {player.name} 
+                            id = {player.id}
+                            key= {player.id.toString()}
+                            removePlayer = {this.handleRemovePlayer}
+                        />
+                    )}
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        // add the component with a self closing tag
+        // recommended to include one space
+        <App />,
+        document.getElementById('root')
     )
-}
-
-const Player = (props) => {
-    return (
-        <div className='player'>
-            <span className='player-name'> {props.name} </span>
-            {/* composition */}
-            <Counter score={props.score}/>
-        </div>
-    )
-}
-
-function App(props){
-    return (
-        <div className='scoreboard'>
-            <Header title='Scoreboard' totalPlayer={props.initialPlayers.length}/>
-            
-            {/* player list */}
-            {props.initialPlayers.map(player =>
-                <Player 
-                    name = {player.name} 
-                    score= {player.score} 
-                    key= {player.id.toString}
-                />
-            )}
-        </div>
-    )
-}
-
-ReactDOM.render(
-    // add the component with a self closing tag
-    // recommended to include one space
-    <App initialPlayers = {players}/>,
-    document.getElementById('root')
-)
