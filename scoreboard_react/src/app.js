@@ -3,22 +3,22 @@ const players = [
     {
         name: "Guil",
         score: 50,
-        key: 1
+        id: 1
       },
       {
         name: "Treasure",
         score: 85,
-        key: 2
+        id: 2
       },
       {
         name: "Ashley",
         score: 95,
-        key: 3
+        id: 3
       },
       {
         name: "James",
         score: 80,
-        key: 4
+        id: 4
       }
 ]
 
